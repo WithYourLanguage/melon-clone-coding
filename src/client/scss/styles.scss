@@ -3,13 +3,10 @@
 @import "./config/_reset.scss";
 
 // Components
-
+@import "./components//navigationBar.scss";
 // Example: @import "./components/message.scss";
-
 // Screens
-
 // Example: @import "./screens/search.scss";
-
 // Defaults
 a {
   color: inherit;
@@ -22,3 +19,5 @@ body {
   background-color: $bg;
   color: white;
 }
+
+// icon이나 button과 같이 기본값을 지정해주는 곳

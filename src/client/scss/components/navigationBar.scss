@@ -1,0 +1,28 @@
+.navigationBar {
+  display: flex;
+  align-items: center;
+}
+
+.navigationBar__melonIcon {
+  position: relative;
+  width: 5%;
+  height: 5%;
+}
+
+.navigationBar__text {
+  font-size: 100%;
+}
+.navigationBar__text-margin {
+  margin-left: 34px;
+}
+
+.joinDiv {
+  display: flex;
+  justify-content: center;
+}
+.joinDivTest {
+  border-radius: 99999px;
+  width: 198.44;
+  height: 107;
+  background-color: tomato;
+}
