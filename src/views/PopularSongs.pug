@@ -1,0 +1,12 @@
+extends base
+
+block content
+	h1.pageTitle 지금 실시간 인기곡🔥
+	each song in songs
+		div.popularSongs__flexDiv
+			div.popularSongs__div
+				img.popularSongs__songImg(src=song.thumbUrl)
+				p.popularSongs__songTitle=song.title
+				div.popularSongs__viewsDiv
+				p.popularSongs__viewsP 누적 조회수: #{song.views}
+		

@@ -32,3 +32,7 @@
 
 - npm run build`를 실행합니다.
 - npm start`를 실행합니다.
+
+## 라우터 
+- /home
+- /song/Popular-songs

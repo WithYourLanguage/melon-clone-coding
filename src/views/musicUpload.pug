@@ -1,0 +1,9 @@
+extends base
+
+block content
+	form(method="POST")
+		input(type="text", placeholder="title", required, name="title")
+		input(type="text", placeholder="fileUrl", required, name="fileUrl")
+		input(type="text", placeholder="thumbUrl", required, name="thumbUrl")
+		input(type="text", placeholder="아티스트", required, name="artists")
+		input(type="submit", value="업로드")

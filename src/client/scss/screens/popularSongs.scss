@@ -1,0 +1,59 @@
+.popularSongs__flexDiv {
+  display: flex;
+  //justify-content: center;
+}
+
+.popularSongs__div {
+  display: flex;
+  align-items: center;
+
+  width: 40%;
+  height: 20%;
+  align-items: center;
+
+  margin-top: 15px;
+  margin-left: 60px;
+
+  border: none;
+  padding: 15px 0px;
+
+  // 2가지의 옵션이 있습니다. 밑줄만 쳐지는 옵션과 전체 테두리로 감싸는 옵션
+  // 1번 옵션 : 전체를 다 감싸는 옵션
+  //border: 1px solid rgb(255, 255, 255);
+  //border-radius: 25px;
+
+  // 2번 옵션 : 밑줄만 쳐지는 옵션
+  border-bottom: 1px solid rgb(112, 112, 112);
+  .popularSongs__songImg {
+    padding: 15px;
+    width: 10%;
+    height: 10%;
+    border-radius: 9999px;
+  }
+  .popularSongs__songTitle {
+    font-size: 30px;
+    font-weight: 100;
+  }
+  .popularSongs__viewsDiv {
+    width: 1px;
+    height: 51px;
+    background-color: rgba(255, 255, 255, 40%);
+    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+  }
+  .popularSongs__viewsP {
+    color: rgba(255, 255, 255, 40%);
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 100;
+  }
+}
+.pageTitle {
+  font-size: 40px;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-left: 60px;
+
+  letter-spacing: -2.5px;
+}
