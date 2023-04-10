@@ -1,0 +1,14 @@
+.login__melonIcon_flexDiv {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 10%;
+    height: 10%;
+  }
+  h1 {
+    font-size: 40px;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,20 @@
+extends base
+
+block content
+	
+	div.playSong_bgDiv
+		img(src=song.thumbUrl)
+		span.playSong__title=song.title 
+		span.playSong__artists=song.artists
+		input.playSong__timeLine(type="range",step="0.001", value=0, min="0")
+		div.playSong__timeDiv
+			div.playSong__totalTimeDiv
+				span.playSong__totalTime 0:00
+			div.playSong__viewingTimeDiv
+				span.playSong__viewingTime 0:00
+		
+		div.songPlayBtnBgDiv
+			i.songPlayBtn.fa-solid.fa-play
+		audio.playSongAudio(src=song.fileUrl, controls, autoplay)
+block scripts
+	script(src="/static/js/songPlay.js")

@@ -1,0 +1,68 @@
+.playSongAudio {
+  display: none;
+}
+
+.playSong_bgDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 22.6px;
+  flex-direction: column;
+  img {
+    border-radius: 30px;
+    width: 256px;
+    height: 256px; // 300줄임
+  }
+  .playSong__title {
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 700;
+  }
+  .playSong__artists {
+    font-weight: 500;
+    opacity: 0.4;
+    margin-top: 5px;
+  }
+  input {
+    margin-top: -10px;
+    width: 300px;
+    accent-color: #00ff4c;
+    justify-content: flex-start;
+  }
+  .playSong__timeDiv {
+    margin-top: -20px;
+    display: flex;
+    width: 295px;
+    .playSong__totalTimeDiv {
+      margin-right: auto;
+      span {
+        font-weight: 500;
+        opacity: 0.4;
+      }
+    }
+    .playSong__viewingTimeDiv {
+      margin-left: auto;
+      span {
+        font-weight: 500;
+        opacity: 0.4;
+      }
+    }
+  }
+  .songPlayBtnBgDiv {
+    display: flex;
+    width: 100px;
+    height: 100px;
+
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    transition: background-color 0.1s ease-in-out;
+    &:hover {
+      background-color: #525255;
+    }
+    i {
+      font-size: 30px;
+      color: #ffffff;
+    }
+  }
+}

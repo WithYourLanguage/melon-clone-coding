@@ -1,12 +1,16 @@
 extends base
 
 block content
-	h1.pageTitle 지금 실시간 인기곡🔥
+	h1.pageTitle 인기곡
+	span.pageSubTitle 지금 실시간 인기곡을 바로 확인해보세요!
 	each song in songs
-		div.popularSongs__flexDiv
-			div.popularSongs__div
-				img.popularSongs__songImg(src=song.thumbUrl)
-				p.popularSongs__songTitle=song.title
-				div.popularSongs__viewsDiv
-				p.popularSongs__viewsP 누적 조회수: #{song.views}
+		a(href="/song/" + song._id + "/play-song")
+			div.popularSongs__flexDiv
+				div.popularSongs__div
+					img.popularSongs__songImg(src=song.thumbUrl)
+					div.popularSongs__metaDiv
+						p.popularSongs__songTitle=song.title
+						p.popularSongs__artists=song.artists
+				//-div.popularSongs__viewsDiv
+				//-p.popularSongs__viewsP 누적 조회수: #{song.views}
 		

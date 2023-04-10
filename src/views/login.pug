@@ -1,0 +1,11 @@
+extends base
+
+block content
+	div.login__melonIcon_flexDiv
+		img(src="https://lh3.google.com/u/1/d/16oc-NXME4I7f1Y2lJliGAgWdi6aijyjL=w1920-h859-iv1")
+		h1 Melon Login
+	form(method="POST")
+		input(type="text", placeholder="Email", required, name="email")
+		input(type="password", placeholder="Password", required, name="password")
+		
+		input.social__btn(type="submit", value="로그인")

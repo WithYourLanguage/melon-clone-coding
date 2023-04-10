@@ -6,6 +6,7 @@ const BASE_JS = "./src/client/js/";
 module.exports = {
   entry: {
     main: BASE_JS + "main.js",
+    songPlay: BASE_JS + "songPlay.js",
   },
   plugins: [
     new MiniCssExtractPlugin({

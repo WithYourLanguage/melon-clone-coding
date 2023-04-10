@@ -2,6 +2,9 @@ import Song from "../models/Song";
 import User from "../models/User";
 
 export const home = async (req, res) => {
+  const songs = await Song.find({});
+
+  console.log(songs);
   return res.render("home", { pageTitle: "Home" });
 };
 export const PopularSongs = async (req, res) => {
@@ -17,7 +20,6 @@ export const getMusicUpload = (req, res) => {
 
 export const postMusicUpload = async (req, res) => {
   const { title, fileUrl, thumbUrl, artists } = req.body;
-  console.log(title, fileUrl, thumbUrl, artists);
   await Song.create({
     title,
     fileUrl,
@@ -25,5 +27,12 @@ export const postMusicUpload = async (req, res) => {
     artists,
     views: 0,
   });
-  console.log("OK");
+  console.log("OK 음악 업로드 성공 ✅");
+};
+
+export const playSong = async (req, res) => {
+  const { id } = req.params;
+  const song = await Song.findById(id);
+  console.log(song);
+  return res.render("playSong", { song });
 };

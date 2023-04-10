@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
 
-  width: 40%;
+  width: 30%;
   height: 20%;
   align-items: center;
 
@@ -23,17 +23,14 @@
   //border-radius: 25px;
 
   // 2번 옵션 : 밑줄만 쳐지는 옵션
-  border-bottom: 1px solid rgb(112, 112, 112);
+  border-bottom: 1px solid rgb(58, 58, 58);
   .popularSongs__songImg {
     padding: 15px;
     width: 10%;
     height: 10%;
     border-radius: 9999px;
   }
-  .popularSongs__songTitle {
-    font-size: 30px;
-    font-weight: 100;
-  }
+
   .popularSongs__viewsDiv {
     width: 1px;
     height: 51px;
@@ -54,6 +51,24 @@
   font-weight: 700;
   margin-top: 15px;
   margin-left: 60px;
-
+  margin-bottom: 10px;
   letter-spacing: -2.5px;
+}
+.pageSubTitle {
+  font-size: 1rem;
+  margin-top: 15px;
+  margin-left: 63px;
+  opacity: 0.5;
+}
+
+.popularSongs__metaDiv {
+  .popularSongs__songTitle {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .popularSongs__artists {
+    margin-top: 3px;
+    font-weight: 100;
+    opacity: 0.4;
+  }
 }

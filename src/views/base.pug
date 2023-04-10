@@ -4,15 +4,19 @@ html(lang="ko")
         title #{siteName} | #{pageTitle}
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
         link(rel="stylesheet", href="/static/css/styles.css")
+        script(src="https://kit.fontawesome.com/4f4bef0826.js" crossorigin="anonymous")
     body
+        if messages.error 
+            span=messages.error
         div.navigationBar
-            img.navigationBar__melonIcon(src="https://file.notion.so/f/s/02ce6f99-3968-429e-938b-66a08ab33c2c/35176176234178189-236160156234177176.svg?id=1c1e2803-e5a2-4be3-9b68-61a2c3484780&table=block&spaceId=af81ecf0-cb97-4bd1-8fba-ec5f542fb911&expirationTimestamp=1680587885413&signature=iQmAPvDQ0P0UnIAEJfGzjv5hErV5db2e4LYHNcdd1T4&downloadName=35176176234178189-236160156234177176.svg")
+            a.navigationBar__melonIcon__a(href="/")
+                img.navigationBar__melonIcon(src="https://lh3.google.com/u/1/d/16oc-NXME4I7f1Y2lJliGAgWdi6aijyjL=w1920-h859-iv1")
             a(href="").navigationBar__text My Page
             a(href="").navigationBar__text.navigationBar__text-margin My Play List
             a(href="/song/Popular-songs").navigationBar__text.navigationBar__text-margin 인기곡
             div.joinDiv
-                div.joinDivTest
-                    a(href="") Join
+                a(href="/join").navigationBar__join Join
+            a(href="/login").navigationBar__login Login
         include partials/header                
         main
             block content
