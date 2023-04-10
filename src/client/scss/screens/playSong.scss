@@ -8,6 +8,22 @@
   align-items: center;
   margin-top: 22.6px;
   flex-direction: column;
+  .playSong__timeLine {
+    position: relative;
+
+    margin-top: 10px;
+    height: 5px;
+    width: 300px;
+    border-radius: 30px;
+    background-color: rgb(75, 75, 75);
+    .playSong__timeLine__listening {
+      position: relative;
+      height: 5px;
+      background-color: #00ff4c;
+      z-index: 3;
+      border-radius: 30px;
+    }
+  }
   img {
     border-radius: 30px;
     width: 256px;
@@ -35,6 +51,7 @@
     width: 295px;
     .playSong__totalTimeDiv {
       margin-right: auto;
+      margin-top: 30px;
       span {
         font-weight: 500;
         opacity: 0.4;
@@ -42,6 +59,7 @@
     }
     .playSong__viewingTimeDiv {
       margin-left: auto;
+      margin-top: 30px;
       span {
         font-weight: 500;
         opacity: 0.4;

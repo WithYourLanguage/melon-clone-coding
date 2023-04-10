@@ -6,7 +6,8 @@ block content
 		img(src=song.thumbUrl)
 		span.playSong__title=song.title 
 		span.playSong__artists=song.artists
-		input.playSong__timeLine(type="range",step="0.001", value=0, min="0")
+		div.playSong__timeLine
+			div.playSong__timeLine__listening
 		div.playSong__timeDiv
 			div.playSong__totalTimeDiv
 				span.playSong__totalTime 0:00
