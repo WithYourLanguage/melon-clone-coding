@@ -1,13 +1,17 @@
 extends base
 
 block content
-	
-	div.playSong_bgDiv
+	div.playSong_bgDiv(data-id=song._id, data-playList=playListPlay)
 		img(src=song.thumbUrl)
-		span.playSong__title=song.title 
+		div.playSong__titleANDheart-div
+			span.playSong__title=song.title
+				if !userLike
+					i.fa-regular.fa-heart.playSong__heart
+				else 
+					i.fa-solid.fa-heart.playSong__heart
+
 		span.playSong__artists=song.artists
-		div.playSong__timeLine
-			div.playSong__timeLine__listening
+		input.playSong__timeLine(type="range",step="0.001", value=0, min="0")
 		div.playSong__timeDiv
 			div.playSong__totalTimeDiv
 				span.playSong__totalTime 0:00

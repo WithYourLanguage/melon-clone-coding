@@ -5,6 +5,8 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
+  likes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Song" }],
+  playList: [{ type: mongoose.Schema.Types.ObjectId, ref: "Song" }],
 });
 
 userSchema.pre("save", async function () {

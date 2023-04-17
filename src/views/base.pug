@@ -11,12 +11,17 @@ html(lang="ko")
         div.navigationBar
             a.navigationBar__melonIcon__a(href="/")
                 img.navigationBar__melonIcon(src="https://lh3.google.com/u/1/d/16oc-NXME4I7f1Y2lJliGAgWdi6aijyjL=w1920-h859-iv1")
-            a(href="").navigationBar__text My Page
-            a(href="").navigationBar__text.navigationBar__text-margin My Play List
-            a(href="/song/Popular-songs").navigationBar__text.navigationBar__text-margin 인기곡
-            div.joinDiv
-                a(href="/join").navigationBar__join Join
-            a(href="/login").navigationBar__login Login
+            if loggedIn
+                a(href="").navigationBar__text My Page
+                a(href="/song/my-play-list").navigationBar__text.navigationBar__text-margin My Play List
+            a(href="/song/Popular-songs").navigationBar__text.navigationBar__text-margin Popular Song
+            if !loggedIn
+                div.joinDiv
+                    a(href="/join").navigationBar__join Join
+                a(href="/login").navigationBar__login Login
+            if loggedIn 
+                div.loginDiv
+                    a(href="/logout").navigationBar__login LogOut
         include partials/header                
         main
             block content

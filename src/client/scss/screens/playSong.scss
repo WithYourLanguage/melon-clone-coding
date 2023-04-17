@@ -8,6 +8,24 @@
   align-items: center;
   margin-top: 22.6px;
   flex-direction: column;
+  .playSong__titleANDheart-div {
+    margin-top: 10px;
+    .playSong__heart {
+      font-size: 20px;
+      margin-left: 10px;
+      margin-top: -5px;
+      opacity: 0.4;
+      vertical-align: middle;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .playSong__title {
+      font-size: 30px;
+      font-weight: 700;
+    }
+  }
   .playSong__timeLine {
     position: relative;
 
@@ -28,12 +46,9 @@
     border-radius: 30px;
     width: 256px;
     height: 256px; // 300줄임
+    // margin-bottom: 10px;
   }
-  .playSong__title {
-    margin-top: 20px;
-    font-size: 30px;
-    font-weight: 700;
-  }
+
   .playSong__artists {
     font-weight: 500;
     opacity: 0.4;
@@ -51,7 +66,7 @@
     width: 295px;
     .playSong__totalTimeDiv {
       margin-right: auto;
-      margin-top: 30px;
+      margin-top: 5px;
       span {
         font-weight: 500;
         opacity: 0.4;
@@ -59,7 +74,7 @@
     }
     .playSong__viewingTimeDiv {
       margin-left: auto;
-      margin-top: 30px;
+      margin-top: 5px;
       span {
         font-weight: 500;
         opacity: 0.4;

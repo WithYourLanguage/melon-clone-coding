@@ -4,9 +4,8 @@ const totalTime = document.querySelector(".playSong__totalTime");
 const viewingTime = document.querySelector(".playSong__viewingTime");
 const timeLine = document.querySelector(".playSong__timeLine");
 const songPlayDiv = document.querySelector(".songPlayBtnBgDiv");
-const timeLineListening = document.querySelector(
-  ".playSong__timeLine__listening"
-);
+const playSongBgDiv = document.querySelector(".playSong_bgDiv");
+const playSongHeart = document.querySelector(".playSong__heart");
 
 let songPlayBtnChang = false;
 
@@ -48,10 +47,6 @@ const handleTimeUpdate = () => {
   playCheck();
   totalTime.innerText = formatTime(Math.floor(audio.currentTime));
   timeLine.value = Math.floor(audio.currentTime);
-  const progress = audio.currentTime / audio.duration; // 재생 시간의 진행률 계산
-  const width = timeLine.offsetWidth * progress; // 타임라인 요소의 너비에 진행률을 곱하여 playback 요소의 너비 계산
-
-  timeLineListening.style.width = width + "px"; // playback 요소의 너비 설정
 };
 const handleTimelineChange = (event) => {
   const {
@@ -74,10 +69,57 @@ const handleSongPlayAClick = (event) => {
   audioPlay();
 };
 
+// const handleAudioEnded = async () => {
+//   const { id } = playSongBgDiv.dataset;
+//   await fetch(`/api/song/${id}/view`, {
+//     method: "POST",
+//   });
+//   await fetch(`/api/song/${id}/nextSong`, {
+//     method: "POST",
+//   });
+// };
+const handleAudioEnded = async () => {
+  const { id } = playSongBgDiv.dataset;
+  const { playList } = playSongBgDiv.dataset;
+  fetch(`/api/song/${id}/view`, {
+    method: "POST",
+  });
+  if (playList === false) {
+    fetch(`/api/song/${id}/next-song`, {
+      method: "POST",
+    }).then((res) => {
+      if (res.redirected) {
+        window.location.href = res.url;
+      }
+    });
+  } else {
+    fetch(`/api/song/${id}/next-song/play-list`, {
+      method: "POST",
+    }).then((res) => {
+      if (res.redirected) {
+        window.location.href = res.url;
+      }
+    });
+  }
+};
+
+const handleLikeDivClick = async () => {
+  const { id } = playSongBgDiv.dataset;
+  const response = await fetch(`/api/song/${id}/like`, {
+    method: "POST",
+  });
+  if (response.status === 201) {
+    playSongHeart.classList = "fa-solid fa-heart playSong__heart";
+  } else {
+    playSongHeart.classList = "fa-regular fa-heart playSong__heart";
+  }
+};
+
 songPlayIcon.addEventListener("click", handleSongPlayIconClick);
 audio.addEventListener("loadedmetadata", handleLoadedMetadata);
 audio.addEventListener("timeupdate", handleTimeUpdate);
 timeLine.addEventListener("input", handleTimelineChange);
 window.addEventListener("keydown", handleKeyDown);
 songPlayDiv.addEventListener("click", handleSongPlayAClick);
-//timeLine.on("click", playFromClickedPos);
+audio.addEventListener("ended", handleAudioEnded);
+playSongHeart.addEventListener("click", handleLikeDivClick);

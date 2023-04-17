@@ -6,6 +6,16 @@ block content
 		h1 Melon Login
 	form(method="POST")
 		input(type="text", placeholder="Email", required, name="email")
+		if messages.formErrorEmail 
+			div.formErrorMessage_flexDiv
+				span.formErrorMessage.formErrorMessageEmail=messages.formErrorEmail
 		input(type="password", placeholder="Password", required, name="password")
-		
+		if messages.formErrorPassword
+			div.formErrorMessage_flexDiv
+				span.formErrorMessage.formErrorMessageEmail=messages.formErrorPassword
 		input.social__btn(type="submit", value="로그인")
+	br
+	div.join__loginGuide_flexDiv
+		div.join__loginGuide
+			span 아직 멜론 계정이 없다면?
+			a(href="/login")  계정 만들기 &rarr;
