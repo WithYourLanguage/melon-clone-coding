@@ -5,10 +5,11 @@ block content
 		img(src=song.thumbUrl)
 		div.playSong__titleANDheart-div
 			span.playSong__title=song.title
-				if !userLike
-					i.fa-regular.fa-heart.playSong__heart
-				else 
-					i.fa-solid.fa-heart.playSong__heart
+				if loggedIn
+					if !userLike
+						i.fa-regular.fa-heart.playSong__heart
+					else 
+						i.fa-solid.fa-heart.playSong__heart
 
 		span.playSong__artists=song.artists
 		input.playSong__timeLine(type="range",step="0.001", value=0, min="0")

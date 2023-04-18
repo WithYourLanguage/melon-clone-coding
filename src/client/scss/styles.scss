@@ -102,3 +102,37 @@ body::-webkit-scrollbar-track {
     }
   }
 }
+
+@keyframes goAway {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+.message {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  max-width: 400px;
+  min-height: 50px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-align: center;
+
+  animation: ComeHere 0.5s ease-in-out forwards;
+  animation-delay: 4s;
+  &.error {
+    background-color: tomato;
+    color: white;
+  }
+  &.info {
+    background-color: rgb(7, 183, 7);
+  }
+  &.success {
+    background-color: rgb(7, 183, 7);
+  }
+}

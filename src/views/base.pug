@@ -1,3 +1,5 @@
+include mixins/message
+
 doctype html
 html(lang="ko")
     head
@@ -7,7 +9,11 @@ html(lang="ko")
         script(src="https://kit.fontawesome.com/4f4bef0826.js" crossorigin="anonymous")
     body
         if messages.error 
-            span=messages.error
+            +message("error",messages.error)
+        if messages.info 
+            +message("info", messages.info )
+        if messages.success 
+            +message("success", messages.success )
         div.navigationBar
             a.navigationBar__melonIcon__a(href="/")
                 img.navigationBar__melonIcon(src="https://lh3.google.com/u/1/d/16oc-NXME4I7f1Y2lJliGAgWdi6aijyjL=w1920-h859-iv1")
