@@ -13,7 +13,7 @@ export const postLogin = async (req, res) => {
     req.flash("formErrorEmail", "Email을 다시 한번 확인해주세요");
     return res.render("login", { pageTitle: "Login" });
   }
-  
+
   const ok = await bcrypt.compare(password, user.password);
   if (!ok) {
     req.flash("formErrorPassword", "Password을 다시 한번 확인해주세요");
@@ -21,6 +21,7 @@ export const postLogin = async (req, res) => {
   }
   req.session.loggedIn = true;
   req.session.user = user;
+  req.flash("info", `${user.name}님 로그인에 성공하였습니다`);
   return res.redirect("/");
 };
 
@@ -45,11 +46,13 @@ export const postJoin = async (req, res) => {
     req.flash("error", "죄송합니다. Error이 발생했습니다");
     return res.redirect("/404");
   }
-
+  req.flash("info", `${name}님 회원가입이 완료되었습니다`);
   return res.redirect("/login");
 };
 
 export const logout = (req, res) => {
+  req.flash("info", "정상적으로 로그아웃 되었습니다");
+
   req.session.loggedIn = false;
   req.session.loggedInUser = undefined;
   return res.redirect("/");

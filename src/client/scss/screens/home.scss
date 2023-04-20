@@ -1,0 +1,45 @@
+.home__popularSong-div {
+  .home__popularSong-title {
+    h1 {
+      font-size: 30px;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+    a {
+      font-size: auto;
+      font-weight: 400;
+      opacity: 0.5;
+    }
+    h1,
+    a {
+      margin-left: 45px;
+      margin-top: 10px;
+    }
+  }
+  .home__popularSong-img-div {
+    margin-left: 36px;
+    margin-top: 15px;
+    display: flex;
+    overflow: auto;
+    img {
+      width: 150px;
+      height: 150px;
+      border-radius: 25px;
+      margin-left: 9px;
+    }
+    .home__popularSong-seeMore {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 150px;
+      height: 150px;
+      background-color: rgb(119, 119, 119);
+      border-radius: 25px;
+      margin-left: 36px;
+      span {
+        margin-top: 3px;
+      }
+    }
+  }
+}

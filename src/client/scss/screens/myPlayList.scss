@@ -17,3 +17,16 @@
     border-radius: 9999px;
   }
 }
+.myPlayList__NoPlayList-div {
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+  font-weight: 300;
+  font-size: 20px;
+  margin-top: 50px;
+  .myPlayList__NoPlayList {
+    text-align: center;
+    margin: auto;
+    height: 32px;
+  }
+}

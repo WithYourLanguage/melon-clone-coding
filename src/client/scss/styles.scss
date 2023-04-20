@@ -11,6 +11,7 @@
 @import "./screens//login.scss"; // Example: @import "./screens/search.scss";
 @import "./screens//playSong.scss";
 @import "./screens//myPlayList.scss";
+@import "./screens//home.scss";
 // Defaults
 //폰트
 @font-face {
@@ -102,14 +103,29 @@ body::-webkit-scrollbar-track {
     }
   }
 }
-
-@keyframes goAway {
-  from {
+@keyframes messageAnimation {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  40% {
     transform: none;
     opacity: 1;
   }
-  to {
-    transform: translateY(-50px);
+  60% {
+    transform: none;
+    opacity: 1;
+  }
+  70% {
+    transform: none;
+    opacity: 1;
+  }
+  80% {
+    transform: none;
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(50px);
     opacity: 0;
   }
 }
@@ -118,13 +134,11 @@ body::-webkit-scrollbar-track {
   bottom: 10px;
   left: 10px;
   max-width: 400px;
-  min-height: 50px;
-  padding: 10px 20px;
+  padding: 15px 25px;
   border-radius: 10px;
   text-align: center;
+  animation: messageAnimation 5s ease-in-out forwards;
 
-  animation: ComeHere 0.5s ease-in-out forwards;
-  animation-delay: 4s;
   &.error {
     background-color: tomato;
     color: white;

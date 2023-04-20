@@ -3,10 +3,8 @@ import User from "../models/User";
 import Playlist from "../models/Playlist";
 
 export const home = async (req, res) => {
-  const songs = await Song.find({});
-  const user = await User.find({});
-  console.log(user);
-  return res.render("home", { pageTitle: "Home" });
+  const songs = await Song.find({}).sort({ views: "desc" }).limit(15);
+  return res.render("home", { pageTitle: "Home", songs });
 };
 export const PopularSongs = async (req, res) => {
   const songs = await Song.find({}).sort({ views: "desc" }); // 모든 노래를 찾은 뒤 내림차순 정렬
@@ -33,6 +31,7 @@ export const postMusicUpload = async (req, res) => {
 };
 
 export const playSong = async (req, res) => {
+  console.log("Song Play가 정상적으로 요청 완료");
   const { id } = req.params;
   const song = await Song.findById(id);
   const playListPlay = false;
@@ -64,11 +63,21 @@ export const registerView = async (req, res) => {
 };
 
 export const nextSong = async (req, res) => {
+  console.log("✅ NEXT SONG");
+  if (!req.session.loggedIn) {
+    console.log("IFs");
+    req.flash(
+      "error",
+      "다음 노래를 바로 이어서 듣고 싶으시다면 로그인을 진행해 주세요"
+    );
+    return res.redirect("/join");
+  }
   const { id } = req.params;
   const song = await Song.findById(id);
   if (!song) {
     return res.sendStatus(404);
   }
+
   let nextSongPlayListSession = undefined;
   if (req.session.nextSongPlayList) {
     nextSongPlayListSession = req.session.nextSongPlayList;
@@ -100,7 +109,6 @@ export const nextSong = async (req, res) => {
   if (!nextSongPlayListSession) {
     nextSongPlayListSession.shift();
   }
-
   res.redirect(`/song/${nextSongPlayListSession[0]._id}/play-song`);
 };
 export const playlistNextSong = async (req, res) => {

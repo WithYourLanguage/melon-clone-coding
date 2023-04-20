@@ -1,4 +1,15 @@
 extends base
 
 block content
-    
+	div.home__popularSong-div 
+		div.home__popularSong-title
+			h1 지금 실시간 인기곡
+			a(href="/song/Popular-songs") 더 보러가기 &rarr;
+		div.home__popularSong-img-div
+			each song in songs
+				a(href=`/song/${song._id}/play-song`)
+					img(src=song.thumbUrl)
+			a(href="/song/Popular-songs").home__popularSong-seeMore
+				i.fa-solid.fa-circle-chevron-right
+				span 더 보러가기
+

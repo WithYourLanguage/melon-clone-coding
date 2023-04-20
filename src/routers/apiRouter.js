@@ -9,7 +9,11 @@ import { protectorMiddleware } from "../middlewares";
 const apiRouter = express.Router();
 
 apiRouter.post("/song/:id([0-9a-f]{24})/view", registerView);
-apiRouter.post("/song/:id([0-9a-f]{24})/next-song", nextSong);
+apiRouter.post(
+  "/song/:id([0-9a-f]{24})/next-song",
+  protectorMiddleware,
+  nextSong
+);
 apiRouter.post(
   "/song/:id([0-9a-f]{24})/next-song/play-list",
   protectorMiddleware,

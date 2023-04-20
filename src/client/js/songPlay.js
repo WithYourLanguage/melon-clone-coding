@@ -84,11 +84,13 @@ const handleAudioEnded = async () => {
   fetch(`/api/song/${id}/view`, {
     method: "POST",
   });
-  if (playList === false) {
+
+  if (!playList) {
     fetch(`/api/song/${id}/next-song`, {
       method: "POST",
     }).then((res) => {
       if (res.redirected) {
+        console.log("리더렉트 요청쓰");
         window.location.href = res.url;
       }
     });
@@ -122,4 +124,6 @@ timeLine.addEventListener("input", handleTimelineChange);
 window.addEventListener("keydown", handleKeyDown);
 songPlayDiv.addEventListener("click", handleSongPlayAClick);
 audio.addEventListener("ended", handleAudioEnded);
-playSongHeart.addEventListener("click", handleLikeDivClick);
+if (playSongHeart) {
+  playSongHeart.addEventListener("click", handleLikeDivClick);
+}

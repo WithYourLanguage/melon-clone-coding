@@ -1,7 +1,11 @@
 extends base
 
 block content
-	a(href=`/song/${playListImg._id}/play-song/play-list/reset`)
-		div.myPlayList__Background
-			img(src=playListImg.thumbUrl)
-			h1 내가 좋아하는 노래
+	if !playListImg
+		div.myPlayList__NoPlayList-div
+			span.myPlayList__NoPlayList 죄송합니다. 여기에 표시할 수 있는 것이 없습니다 <br> 원하시는 노래에 좋아요를 누르시고 여기를 다시 찾아오세요!
+	else
+		a(href=`/song/${playListImg._id}/play-song/play-list/reset`)
+			div.myPlayList__Background
+				img(src=playListImg.thumbUrl)
+				h1 내가 좋아하는 노래
