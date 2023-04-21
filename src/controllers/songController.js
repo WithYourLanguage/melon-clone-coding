@@ -13,6 +13,16 @@ export const home = async (req, res) => {
   });
   const genreView = await GenreView.find({}).sort({ views: "desc" });
 
+  // 실제 배포 시 1회성으로 이용할 코드입니다
+  await GenreView.create({
+    genre: "jazz",
+    views: 0,
+  });
+  await GenreView.create({
+    genre: "beat",
+    views: 0,
+  });
+  // 실제 배포 시 1회성으로 이용할 코드입니다
   console.log(genreView);
   return res.render("home", {
     pageTitle: "Home",
