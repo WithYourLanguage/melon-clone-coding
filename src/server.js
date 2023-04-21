@@ -32,6 +32,7 @@ app.locals.toUpperCase = function (str) {
 };
 
 app.use("/uploads", express.static("uploads"));
+app.use("/img", express.static("img"));
 
 app.use("/static", express.static("assets"));
 
