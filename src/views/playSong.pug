@@ -2,6 +2,13 @@ extends base
 
 block content
 	div.playSong_bgDiv(data-id=song._id, data-playList=playListPlay)
+		div.playSong__alarm
+			if playListPlay
+				span 지금 "내가 좋아하는 노래" 플레이리스트를 재생하고 있어요
+			if !loggedIn
+				span 로그인하지 않은 이용자는 다음 노래 추천 기능을 이용할 수 없어요
+			else if !playListPlay
+				span 다음 노래는 같은 장르 위주로 추천됩니다
 		img(src=song.thumbUrl)
 		div.playSong__titleANDheart-div
 			span.playSong__title=song.title

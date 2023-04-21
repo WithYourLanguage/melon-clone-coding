@@ -1,15 +1,51 @@
 extends base
 
 block content
-	div.home__popularSong-div 
-		div.home__popularSong-title
+	div.home__mode-div
+		div.home__mode-title
 			h1 지금 실시간 인기곡
 			a(href="/song/Popular-songs") 더 보러가기 &rarr;
-		div.home__popularSong-img-div
+		div.home__mode-img-div
 			each song in songs
 				a(href=`/song/${song._id}/play-song`)
 					img(src=song.thumbUrl)
-			a(href="/song/Popular-songs").home__popularSong-seeMore
+			a(href="/song/Popular-songs").home__mode-seeMore
+				i.fa-solid.fa-circle-chevron-right
+				span 더 보러가기
+	div.home__mode-div#home__Popular-genre-div
+		div.home__mode-title
+			h1#home__popular-title 실시간 인기 장르
+			div.home__popularGenre-flexDiv
+				each genreViews in genreView
+					if genreViews.genre === "beat"
+						a.home__Popular-genre-a(href=`/song/beat`)
+							div.home__Popular-genre-a-div
+								span.home__Popular-genre-a Beat
+					if genreViews.genre === "jazz"
+						a.home__Popular-genre-a(href=`/song/jazz`)
+							div.home__Popular-genre-a-div.color-yellowGreen
+								span.home__Popular-genre-a Jazz
+
+	div.home__mode-div#home__BeatPopularSong-div
+		div.home__mode-title
+			h1 Beat노래 인기곡
+			a(href="/song/beat") 더 보러가기 &rarr;
+		div.home__mode-img-div
+			each song in beatSongs
+				a(href=`/song/${song._id}/play-song`)
+					img(src=song.thumbUrl)
+			a(href="/song/beat").home__mode-seeMore
+				i.fa-solid.fa-circle-chevron-right
+				span 더 보러가기
+	div.home__mode-div#home__jazzPopularSong-div
+		div.home__mode-title
+			h1 Jazz노래 인기곡
+			a(href="/song/jazz") 더 보러가기 &rarr;
+		div.home__mode-img-div
+			each song in jazzSongs
+				a(href=`/song/${song._id}/play-song`)
+					img(src=song.thumbUrl)
+			a(href="/song/jazz").home__mode-seeMore
 				i.fa-solid.fa-circle-chevron-right
 				span 더 보러가기
 

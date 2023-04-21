@@ -6,6 +6,7 @@ import {
   playSong,
   myPlayList,
   playListPlay,
+  genreBeat
 } from "../controllers/songController";
 import { sessionReset, protectorMiddleware } from "../middlewares";
 
@@ -21,5 +22,5 @@ songRouter.get(
   playListPlay
 );
 songRouter.get("/my-play-list", protectorMiddleware, myPlayList);
-
+songRouter.get("/:id", genreBeat)
 export default songRouter;

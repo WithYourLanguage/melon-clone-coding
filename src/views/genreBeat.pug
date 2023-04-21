@@ -1,0 +1,13 @@
+extends base
+
+block content
+	h1.pageTitle #{toUpperCase(id)} 노래 인기곡
+	span.pageSubTitle #{toUpperCase(id)} 노래만 모아서 한눈에 확인해보세요!
+	each song in genreList
+		a(href="/song/" + song._id + "/play-song")
+			div.popularSongs__flexDiv
+				div.popularSongs__div
+					img.popularSongs__songImg(src=song.thumbUrl)
+					div.popularSongs__metaDiv
+						p.popularSongs__songTitle=song.title
+						p.popularSongs__artists=song.artists

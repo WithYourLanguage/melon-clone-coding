@@ -75,18 +75,18 @@ footer {
 }
 
 // 스크롤바 커스텀
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 4px; /* 스크롤바의 너비 */
 }
 
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   height: 10%; /* 스크롤바의 길이 */
   background: #484848; /* 스크롤바의 색상 */
 
   border-radius: 10px;
 }
 
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: rgba(33, 122, 244, 0.1); /*스크롤바 뒷 배경 색상*/
 }
 

@@ -1,5 +1,5 @@
-.home__popularSong-div {
-  .home__popularSong-title {
+.home__mode-div {
+  .home__mode-title {
     h1 {
       font-size: 30px;
       font-weight: 800;
@@ -16,7 +16,7 @@
       margin-top: 10px;
     }
   }
-  .home__popularSong-img-div {
+  .home__mode-img-div {
     margin-left: 36px;
     margin-top: 15px;
     display: flex;
@@ -27,7 +27,7 @@
       border-radius: 25px;
       margin-left: 9px;
     }
-    .home__popularSong-seeMore {
+    .home__mode-seeMore {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -42,4 +42,49 @@
       }
     }
   }
+}
+#home__BeatPopularSong-div {
+  margin-top: 40px;
+}
+#home__jazzPopularSong-div {
+  margin-top: 40px;
+}
+#home__Popular-genre-div {
+  margin-top: 40px;
+}
+
+#home__popular-title {
+  margin-bottom: 15px;
+}
+.home__Popular-genre-a {
+  font-size: 40px;
+  color: white !important;
+  margin: 0px !important;
+  opacity: 1 !important;
+  font-weight: 600 !important;
+}
+.home__Popular-genre-a-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  margin-left: 36px;
+  text-align: center;
+  background-color: #64d3bc;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  .home__Popular-genre-a {
+    font-size: 40px;
+    color: white !important;
+    margin: 0px !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
+  }
+}
+.home__popularGenre-flexDiv {
+  display: flex;
+}
+.color-yellowGreen {
+  background-color: #bae315;
 }

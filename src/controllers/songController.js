@@ -1,10 +1,26 @@
 import Song from "../models/Song";
 import User from "../models/User";
-import Playlist from "../models/Playlist";
+//import Playlist from "../models/Playlist";
+import GenreView from "../models/genreView";
 
 export const home = async (req, res) => {
   const songs = await Song.find({}).sort({ views: "desc" }).limit(15);
-  return res.render("home", { pageTitle: "Home", songs });
+  const beatSongs = await Song.find({ genre: "beat" }).limit(15).sort({
+    views: -1,
+  });
+  const jazzSongs = await Song.find({ genre: "jazz" }).limit(15).sort({
+    views: -1,
+  });
+  const genreView = await GenreView.find({}).sort({ views: "desc" });
+
+  console.log(genreView);
+  return res.render("home", {
+    pageTitle: "Home",
+    songs,
+    beatSongs,
+    jazzSongs,
+    genreView,
+  });
 };
 export const PopularSongs = async (req, res) => {
   const songs = await Song.find({}).sort({ views: "desc" }); // 모든 노래를 찾은 뒤 내림차순 정렬
@@ -31,7 +47,6 @@ export const postMusicUpload = async (req, res) => {
 };
 
 export const playSong = async (req, res) => {
-  console.log("Song Play가 정상적으로 요청 완료");
   const { id } = req.params;
   const song = await Song.findById(id);
   const playListPlay = false;
@@ -59,6 +74,23 @@ export const registerView = async (req, res) => {
   }
   song.views = song.views + 1;
   await song.save();
+  return res.sendStatus(200);
+};
+export const registerViewGenre = async (req, res) => {
+  console.log("OKOKOK");
+  const { id } = req.params;
+  const song = await Song.findById(id);
+  if (!song) {
+    return res.sendStatus(404);
+  }
+
+  const genreView = await GenreView.findOne({ genre: song.genre });
+  if (!genreView) {
+    return res.sendStatus(404);
+  }
+  genreView.views = genreView.views + 1;
+  await genreView.save();
+
   return res.sendStatus(200);
 };
 
@@ -231,4 +263,19 @@ export const playListPlay = async (req, res) => {
     userLike,
     playListPlay,
   });
+};
+export const genreBeat = async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    // 404페이지 렌더링
+    return res.status(404).redirect("/"); // 임시로 해 놓은거임
+  } else if (id !== "beat" && id !== "jazz") {
+    // 404페이지 렌더링
+    return res.status(404).redirect("/"); // 임시로 해 놓은거임
+  }
+  const genreList = await Song.find({ genre: id }).sort({
+    views: -1,
+  });
+
+  return res.render("genreBeat", { genreList, id });
 };

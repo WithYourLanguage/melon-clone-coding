@@ -8,10 +8,10 @@ const playlistSchema = new mongoose.Schema({
       required: true,
     },
   ],
-  
+
   user: { type: String, required: true },
 });
 
 const Playlist = mongoose.model("Playlist", playlistSchema);
 
-export default Playlist;
+//export default Playlist;

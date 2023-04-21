@@ -8,6 +8,16 @@
   align-items: center;
   margin-top: 22.6px;
   flex-direction: column;
+  .playSong__alarm {
+    width: 580px;
+    height: 40px;
+    background-color: rgb(125, 125, 125);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin-bottom: 30px;
+  }
   .playSong__titleANDheart-div {
     margin-top: 10px;
     .playSong__heart {

@@ -12,6 +12,7 @@ const logger = morgan("dev");
 
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
+
 app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -26,7 +27,12 @@ app.use(
 app.use(flash());
 app.use(localsMiddleware);
 
+app.locals.toUpperCase = function (str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 app.use("/uploads", express.static("uploads"));
+
 app.use("/static", express.static("assets"));
 
 app.use("/", rootRouter);

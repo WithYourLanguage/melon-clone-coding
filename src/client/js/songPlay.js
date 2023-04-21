@@ -84,13 +84,14 @@ const handleAudioEnded = async () => {
   fetch(`/api/song/${id}/view`, {
     method: "POST",
   });
-
+  await fetch(`/api/song/${id}/view/genre`, {
+    method: "POST",
+  });
   if (!playList) {
     fetch(`/api/song/${id}/next-song`, {
       method: "POST",
     }).then((res) => {
       if (res.redirected) {
-        console.log("리더렉트 요청쓰");
         window.location.href = res.url;
       }
     });
