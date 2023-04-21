@@ -1,12 +1,12 @@
 import express from "express";
-import { home } from "../controllers/songController";
+import { home, songLike } from "../controllers/songController";
 import {
   getLogin,
   postLogin,
   getJoin,
   postJoin,
   logout,
-  error404
+  error404,
 } from "../controllers/userControllers";
 import songRouter from "../routers/songRouter";
 import { publicOnlyMiddleware, protectorMiddleware } from "../middlewares";
@@ -21,5 +21,6 @@ rootRouter
 rootRouter.get("/logout", protectorMiddleware, logout);
 rootRouter.route("/join").all(publicOnlyMiddleware).get(getJoin).post(postJoin);
 rootRouter.use("/song", songRouter);
-rootRouter.use("/", error404)
+rootRouter.use("/", error404);
+
 export default rootRouter;

@@ -12,7 +12,8 @@ export const home = async (req, res) => {
     views: -1,
   });
   const genreView = await GenreView.find({}).sort({ views: "desc" });
-
+  const user = await User.find({});
+  console.log(user);
   console.log(genreView);
   return res.render("home", {
     pageTitle: "Home",
@@ -144,6 +145,7 @@ export const nextSong = async (req, res) => {
   res.redirect(`/song/${nextSongPlayListSession[0]._id}/play-song`);
 };
 export const playlistNextSong = async (req, res) => {
+  console.log("PLAY LIST요청으로 들어왔어요");
   const { id } = req.params;
   const song = await Song.findById(id);
 
@@ -168,12 +170,10 @@ export const playlistNextSong = async (req, res) => {
   }
   console.log(`재생 중인 노래가 삭제 되기 전 : ${nextSongPlayList}`);
   console.log(`song id: ${song.id}`);
-  // nextSongPlayList = nextSongPlayList.filter(
-  //   (s) => String(s._id) !== String(song._id)
-  // ); // 현재 재생 중인 노래를 삭제
-  // req.session.nextSongPlayList = nextSongPlayList; // 수정된 변수를 session에 저장
+
   console.log(`재생 중인 노래가 삭된 후 : ${nextSongPlayList}`);
-  if (nextSongPlayList.length === 1) {
+  if (nextSongPlayList.length === 0) {
+    console.log("노래가 1개밖에 남지 않았어요");
     const songs = await Song.find({});
     req.session.nextSongPlayList = songs;
     nextSongPlayList = songs;
@@ -184,15 +184,214 @@ export const playlistNextSong = async (req, res) => {
   }
   nextSongPlayList.shift();
   req.session.nextSongPlayList = nextSongPlayList;
-  console.log(`nextSongPlayList: ${nextSongPlayList}`);
-  console.log(nextSongPlayList[0]);
-  if (!nextSongPlayList[0]._id) {
+  if (!nextSongPlayList[0] || !nextSongPlayList[0]._id) {
+    if (nextSongPlayList.length === 0) {
+      console.log("노래가 1개밖에 남지 않았어요");
+      const songs = await Song.find({});
+      req.session.nextSongPlayList = songs;
+      nextSongPlayList = songs;
+    } else {
+      nextSongPlayList.shift();
+    }
+  }
+  
+  if(!nextSongPlayList[0]._id) {
     return res.redirect(`/song/${nextSongPlayList[0]}/play-song/play-list`);
   }
   return res.redirect(`/song/${nextSongPlayList[0]._id}/play-song/play-list`);
 };
+// export const songLike = async (req, res) => {
+//   const {
+//     user: { _id },
+//   } = req.session;
+//   if (!_id) {
+//     return res.sendStatus(404);
+//   }
+//   const { id } = req.params;
+//   const user = await User.findById(String(_id));
+//   const song = await Song.findById(id);
+//   let like = undefined;
 
+//   const songId = song._id.toString();
+
+//   const likeArrangement = [song._id];
+//   let likeStatus = undefined;
+//   if (user.likes) {
+//     if (user.likes.includes(songId)) {
+//       likeStatus = 200;
+//       User.updateOne({ _id: user.id }, { $pull: { likes: songId } })
+//         .then(() => {})
+//         .catch((error) => {
+//           console.error(error);
+//         });
+//     } else {
+//       likeStatus = 201;
+//       await User.updateOne(
+//         { _id: user._id },
+//         { $push: { likes: likeArrangement } }
+//       );
+//     }
+//   }
+//   console.log("LIKE OK");
+//   return res.sendStatus(likeStatus);
+// };
+// export const songLike = async (req, res) => {
+//   console.log("승인!");
+//   const {
+//     user: { _id },
+//   } = req.session;
+//   if (!_id) {
+//     return res.sendStatus(404);
+//   }
+//   const { id } = req.params;
+//   const user = await User.findById(String(_id));
+//   const song = await Song.findById(id);
+//   let like = undefined;
+
+//   const songId = song._id.toString();
+//   console.log(songId, includes(songId));
+//   console.log("✅✅✅✅✅");
+//   const likeArrangement = [song._id];
+//   let likeStatus = undefined;
+//   if (user.likes) {
+//     if (user.likes.includes(songId)) {
+//       likeStatus = 203;
+//       User.updateOne({ _id: user._id }, { $pull: { likes: songId } })
+//         .then(() => {})
+//         .catch((error) => {
+//           console.error(error);
+//         });
+//     } else {
+//       likeStatus = 201;
+
+//       await User.updateOne(
+//         { _id: user._id },
+//         { $push: { likes: likeArrangement } }
+//       );
+//     }
+//   }
+
+//   return res.sendStatus(likeStatus);
+// };
+// export const songLike = async (req, res) => {
+//   console.log("요청쓰");
+//   return res.status(200).send("Liked");
+
+//   return;
+//   const {
+//     user: { _id },
+//   } = req.session;
+//   if (!_id) {
+//     console.log("No Id");
+//     return;
+//   }
+//   const { id } = req.params;
+
+//   const user = await User.findById(String(_id));
+//   const song = await Song.findById(id);
+//   let like = undefined;
+//   console.log(`user like : ${user.likes}`);
+//   const songId = song._id.toString();
+
+//   console.log("⛔⛔⛔⛔⛔⛔⛔⛔⛔⛔⛔");
+
+//   console.log(user.likes.includes(songId));
+//   console.log(user.likes);
+//   console.log("⛔⛔⛔⛔⛔⛔⛔⛔⛔⛔⛔");
+//   const likeArrangement = [song._id];
+//   let likeStatus = undefined;
+//   if (user.likes) {
+//     if (user.likes.includes(songId)) {
+//       //  === String(video._id)
+//       like = song.like - 1;
+//       console.log("이미 좋아요 눌렀음 ✅");
+//       likeStatus = 200;
+//       //await Video.findByIdAndDelete(id);
+//       //await User.findOneAndDelete({ like: video.title });
+//       // await User.findByIdAndUpdate(_id, {
+//       //   $set: { like: null },
+//       // });
+
+//       // user.like = undefined;
+//       // await user.save();
+//       console.log(user.id, songId, user.likes);
+//       console.log("🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊🎊");
+//       User.updateOne({ _id: user.id }, { $pull: { likes: songId } })
+//         .then(() => {
+//           console.log(`User ${user.username}의 like에서 ${songId} 삭제 완료`);
+//           console.log(`Like 값 -1 하여${like}으로 변경 완료`);
+//         })
+//         .catch((error) => {
+//           console.error(error);
+//         });
+
+//       //return;
+//     } else {
+//       console.log("좋아요를 누르지 않았음 ❌");
+//       likeStatus = 201;
+//       like = song.like + 1;
+//       console.log(`Like : ${like}`);
+//       await User.updateOne(
+//         { _id: user._id },
+//         { $push: { likes: likeArrangement } }
+//       );
+//     }
+//   }
+//   //const likeArrangement = [mongoose.Types.ObjectId(video._id)];
+
+//   console.log(`commentId✅✅✅✅✅✅ : ${id.commentId}, Like : ${like}`);
+//   console.log("✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅");
+//   await Song.findByIdAndUpdate(id.commentId, {
+//     like,
+//   });
+
+//   /*user.like.push([video._id.toString()]);
+//   await user.save();*/
+//   // await User.findByIdAndUpdate(_id, {
+//   //   like: video._id,
+//   // });
+
+//   return res.sendStatus(likeStatus);
+// };
+// export const songLike = async (req, res) => {
+//   console.log("✅✅✅✅✅✅✅✅✅✅")
+//   const {
+//     user: { _id },
+//   } = req.session;
+//   if (!_id) {
+//     return res.sendStatus(500);
+//   }
+//   const { id } = req.params;
+//   const user = await User.findById(String(_id));
+//   const song = await Song.findById(String(id));
+//   let like = undefined;
+//   const songId = song._id.toString();
+
+//   const likeArrangement = [song._id];
+//   let likeStatus = undefined;
+//   if (user.likes) {
+//     if (user.likes.includes(songId)) {
+//       console.log("이미 좋아요 눌렀음")
+//       likeStatus = 200;
+//       User.updateOne({ _id: user.id }, { $pull: { likes: songId } })
+//         .then(() => {})
+//         .catch((error) => {
+//           console.error(error);
+//         });
+//     } else {
+//       likeStatus = 201;
+//       console.log("좋아요 안 눌렀음")
+//       await User.updateOne(
+//         { _id: user._id },
+//         { $push: { likes: likeArrangement } }
+//       );
+//     }
+//   }
+
+//   return res.sendStatus(likeStatus);
+// };
 export const songLike = async (req, res) => {
+  console.log("✅✅✅✅✅✅✅✅✅✅");
   const {
     user: { _id },
   } = req.session;
@@ -201,25 +400,20 @@ export const songLike = async (req, res) => {
   }
   const { id } = req.params;
   const user = await User.findById(String(_id));
-  const song = await Song.findById(id);
+  const song = await Song.findById(String(id));
   let like = undefined;
-
   const songId = song._id.toString();
 
   const likeArrangement = [song._id];
   let likeStatus = undefined;
   if (user.likes) {
     if (user.likes.includes(songId)) {
+      console.log("이미 좋아요 눌렀음");
       likeStatus = 200;
-
-      User.updateOne({ _id: user.id }, { $pull: { likes: songId } })
-        .then(() => {})
-        .catch((error) => {
-          console.error(error);
-        });
+      await User.updateOne({ _id: user.id }, { $pull: { likes: songId } });
     } else {
       likeStatus = 201;
-
+      console.log("좋아요 안 눌렀음");
       await User.updateOne(
         { _id: user._id },
         { $push: { likes: likeArrangement } }
@@ -229,6 +423,7 @@ export const songLike = async (req, res) => {
 
   return res.sendStatus(likeStatus);
 };
+
 export const myPlayList = async (req, res) => {
   const user = await User.findById(req.session.user._id);
   if (!user) {

@@ -9,9 +9,10 @@ block content
 			each song in songs
 				a(href=`/song/${song._id}/play-song`)
 					img(src=song.thumbUrl)
-			a(href="/song/Popular-songs").home__mode-seeMore
-				i.fa-solid.fa-circle-chevron-right
-				span 더 보러가기
+			a(href="/song/Popular-songs")
+				div.home__mode-seeMore
+					i.fa-solid.fa-circle-chevron-right
+					span.home__TheText 더 보러가기
 	div.home__mode-div#home__Popular-genre-div
 		div.home__mode-title
 			h1#home__popular-title 실시간 인기 장르
@@ -34,9 +35,10 @@ block content
 			each song in beatSongs
 				a(href=`/song/${song._id}/play-song`)
 					img(src=song.thumbUrl)
-			a(href="/song/beat").home__mode-seeMore
-				i.fa-solid.fa-circle-chevron-right
-				span 더 보러가기
+			a(href="/song/beat")
+				div.home__mode-seeMore
+					i.fa-solid.fa-circle-chevron-right
+					span.home__TheText 더 보러가기
 	div.home__mode-div#home__jazzPopularSong-div
 		div.home__mode-title
 			h1 Jazz노래 인기곡
@@ -45,7 +47,8 @@ block content
 			each song in jazzSongs
 				a(href=`/song/${song._id}/play-song`)
 					img(src=song.thumbUrl)
-			a(href="/song/jazz").home__mode-seeMore
-				i.fa-solid.fa-circle-chevron-right
-				span 더 보러가기
+			a(href="/song/jazz")
+				div.home__mode-seeMore
+					i.fa-solid.fa-circle-chevron-right
+					span.home__TheText 더 보러가기
 

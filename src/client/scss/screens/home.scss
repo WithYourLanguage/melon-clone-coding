@@ -32,8 +32,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 150px;
-      height: 150px;
+      width: 150px !important;
+      height: 150px !important;
       background-color: rgb(119, 119, 119);
       border-radius: 25px;
       margin-left: 36px;
@@ -87,4 +87,7 @@
 }
 .color-yellowGreen {
   background-color: #bae315;
+}
+.home__TheText {
+  margin-left: 3px;
 }

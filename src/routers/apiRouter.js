@@ -4,16 +4,18 @@ import {
   nextSong,
   songLike,
   playlistNextSong,
-  registerViewGenre
+  registerViewGenre,
 } from "../controllers/songController";
 import { protectorMiddleware } from "../middlewares";
 const apiRouter = express.Router();
 
+apiRouter.post("/song/:id/like", songLike);
+
 apiRouter.post("/song/:id([0-9a-f]{24})/view", registerView);
-apiRouter.post("/song/:id([0-9a-f]{24})/view/genre", registerViewGenre)
+apiRouter.post("/song/:id([0-9a-f]{24})/view/genre", registerViewGenre);
 apiRouter.post(
   "/song/:id([0-9a-f]{24})/next-song",
-  protectorMiddleware,
+
   nextSong
 );
 apiRouter.post(
@@ -21,6 +23,5 @@ apiRouter.post(
   protectorMiddleware,
   playlistNextSong
 );
-apiRouter.post("/song/:id([0-9a-f]{24})/like", songLike);
-
+//apiRouter.post("/song/:id([0-9a-f]{24})/like", songLike);
 export default apiRouter;

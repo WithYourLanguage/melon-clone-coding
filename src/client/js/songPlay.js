@@ -87,7 +87,7 @@ const handleAudioEnded = async () => {
   await fetch(`/api/song/${id}/view/genre`, {
     method: "POST",
   });
-  if (!playList) {
+  if (playList === false) {
     fetch(`/api/song/${id}/next-song`, {
       method: "POST",
     }).then((res) => {
@@ -126,5 +126,6 @@ window.addEventListener("keydown", handleKeyDown);
 songPlayDiv.addEventListener("click", handleSongPlayAClick);
 audio.addEventListener("ended", handleAudioEnded);
 if (playSongHeart) {
+  console.log("버튼 있닭ㄷㄴ");
   playSongHeart.addEventListener("click", handleLikeDivClick);
 }

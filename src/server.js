@@ -8,8 +8,16 @@ import rootRouter from "./routers/rootRouter";
 import apiRouter from "./routers/apiRouter";
 import { error404 } from "./controllers/userControllers";
 
+import cors from "cors";
+import bodyParser from "body-parser";
+
 const app = express();
 const logger = morgan("dev");
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(cors());
 
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
@@ -37,8 +45,8 @@ app.use("/img", express.static("img"));
 
 app.use("/static", express.static("assets"));
 
-app.use("/", rootRouter);
 app.use("/api", apiRouter);
+app.use("/", rootRouter);
 /*
 Add more routers here!
 */
