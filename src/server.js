@@ -6,6 +6,7 @@ import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./middlewares";
 import rootRouter from "./routers/rootRouter";
 import apiRouter from "./routers/apiRouter";
+import { error404 } from "./controllers/userControllers";
 
 const app = express();
 const logger = morgan("dev");
@@ -41,5 +42,6 @@ app.use("/api", apiRouter);
 /*
 Add more routers here!
 */
+app.use("/", error404);
 
 export default app;

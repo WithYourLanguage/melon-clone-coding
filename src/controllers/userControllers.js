@@ -3,7 +3,7 @@ import User from "../models/User";
 import bcrypt from "bcrypt";
 
 export const getLogin = (req, res) => {
-  return res.render("login");
+  return res.render("login", { pageTitle: "Login" });
 };
 
 export const postLogin = async (req, res) => {
@@ -26,14 +26,14 @@ export const postLogin = async (req, res) => {
 };
 
 export const getJoin = (req, res) => {
-  return res.render("join");
+  return res.render("join", { pageTitle: "Join" });
 };
 
 export const postJoin = async (req, res) => {
   const { email, password, password2, name } = req.body;
   if (password !== password2) {
     req.flash("error", "Password가 같지 않습니다");
-    return res.status(400).render("join");
+    return res.status(400).render("join", { pageTitle: "Join" });
   }
   try {
     await User.create({
@@ -56,4 +56,7 @@ export const logout = (req, res) => {
   req.session.loggedIn = false;
   req.session.loggedInUser = undefined;
   return res.redirect("/");
+};
+export const error404 = (req, res) => {
+  return res.render("error404", { pageTitle: "404" });
 };

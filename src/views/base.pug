@@ -6,7 +6,7 @@ html(lang="ko")
         title #{siteName} | #{pageTitle}
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
         link(rel="stylesheet", href="/static/css/styles.css")
-        link(rel="shortcut icon", type="image/x-icon", href="../img/melon-i.png")
+        link(rel="shortcut icon", type="image/x-icon", href="/../img/melon-i.png")
 
         script(src="https://kit.fontawesome.com/4f4bef0826.js" crossorigin="anonymous")
 
@@ -19,7 +19,7 @@ html(lang="ko")
             +message("success", messages.success )
         div.navigationBar
             a.navigationBar__melonIcon__a(href="/")
-                img.navigationBar__melonIcon(src="../img/melon-i.png")
+                img.navigationBar__melonIcon(src="/../img/melon-i.png")
             if loggedIn
                 a(href="").navigationBar__text My Page
                 a(href="/song/my-play-list").navigationBar__text.navigationBar__text-margin My Play List

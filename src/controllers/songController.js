@@ -270,12 +270,12 @@ export const genreBeat = async (req, res) => {
     // 404페이지 렌더링
     return res.status(404).redirect("/"); // 임시로 해 놓은거임
   } else if (id !== "beat" && id !== "jazz") {
-    // 404페이지 렌더링
+    return res.status(404).render("error404", { pageTitle: "404" });
     return res.status(404).redirect("/"); // 임시로 해 놓은거임
   }
   const genreList = await Song.find({ genre: id }).sort({
     views: -1,
   });
 
-  return res.render("genreBeat", { genreList, id });
+  return res.render("genreBeat", { genreList, id, pageTitle: "genre beat" });
 };
